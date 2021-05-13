@@ -24,7 +24,7 @@ Change history:
 
 metadata
 {
-    definition(name: "UniFi Client", namespace: "tomw", author: "tomw", importUrl: "")
+    definition(name: "UniFi Client", namespace: "tomw", author: "tomw", importUrl: "https://raw.githubusercontent.com/tomwpublic/hubitat_unifiEvents/main/unifiClient")
     {
         capability "Initialize"
         capability "PresenceSensor"
@@ -95,9 +95,11 @@ def refreshFromParent(clientDetails)
     {
         case "present":
             sendEvent(name: "presence", value: "present")
+            log.info ("${device} presence status: ${device.currentValue("presence")}")
             break
         case "not present":
             sendEvent(name: "presence", value: "not present")
+            log.info ("${device} presence status: ${device.currentValue("presence")}")       
             break
         default:
             logDebug("no presence details found")
